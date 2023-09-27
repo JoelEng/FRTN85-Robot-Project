@@ -1,10 +1,10 @@
 import numpy as np
 
-import basic_heart_matrix
+import example_matrices
 
 def main():
     print("Hello, Matrix to RAPID code!!")
-    matrix = basic_heart_matrix.heart_matrix
+    matrix = example_matrices.simple_shapes_matrix
     for row in matrix:
         print(''.join(map(str, row)))
 
