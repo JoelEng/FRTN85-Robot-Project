@@ -11,9 +11,10 @@ def main():
     paths = input_to_paths(points)
     path_names = define_paths(paths)
     OUTPUT.write("\tPROC main()\n")
+    OUTPUT.write("\t\tMoveJ home,v100,z1,pen\WObj:=wobj0;\n")
     for name in path_names:
         OUTPUT.write(f"\t\t{name};\n")
-    OUTPUT.write("\t\tMoveL home,v100,z1,pen\WObj:=wobj0;\n")
+    OUTPUT.write("\t\tMoveJ home,v100,z1,pen\WObj:=wobj0;\n")
     OUTPUT.write("\tENDPROC\nENDMODULE")
 
 def target_string(name, x, y):
