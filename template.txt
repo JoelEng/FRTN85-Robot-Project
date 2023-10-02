@@ -1,0 +1,60 @@
+MODULE Module1
+	CONST robtarget Target_10:=[[100,0,0],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget Target_20:=[[0,0,0],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget Target_30:=[[0,50,0],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget home:=[[647.048869176,0,659.200917087],[0.608761434,-0.000000006,0.793353337,-0.000000005],[0,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_40:=[[100,70,0],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_50:=[[100,100,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_60:=[[100,130,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_70:=[[0,100,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_80:=[[100,150,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_90:=[[50,150,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_100:=[[0,150,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_110:=[[100,200,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_120:=[[50,200,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_130:=[[0,200,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget L_T:=[[100,0,0],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget L_BL:=[[0,0,0],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget L_BR:=[[0,50,0],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget T_TL:=[[100,70,0],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget T_TM:=[[100,100,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget T_TR:=[[100,130,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget T_B:=[[0,100,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget H_TL:=[[100,150,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget H_ML:=[[50,150,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget H_BL:=[[0,150,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget H_TR:=[[100,200,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget H_MR:=[[50,200,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget H_BR:=[[0,200,0],[1,0,0,0],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+
+    PROC main()
+        Path_L;
+        Path_T;
+        Path_H;
+    ENDPROC
+	PROC Path_L()
+        MoveJ L_T,v100,z5,pen\WObj:=Workobject_1;
+	    MoveL Offs(L_T,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+	    MoveL Offs(L_BL,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+	    MoveL Offs(L_BR,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+	    MoveL L_BR,v100,z1,pen\WObj:=Workobject_1;
+	ENDPROC
+    PROC Path_T()
+        MoveJ T_TL,v100,z5,pen\WObj:=Workobject_1;
+        MoveL Offs(T_TL,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL Offs(T_TR,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL Offs(T_TM,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL Offs(T_B,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL T_B,v100,z1,pen\WObj:=Workobject_1;
+    ENDPROC
+    PROC Path_H()
+        MoveJ H_TL,v100,z5,pen\WObj:=Workobject_1;
+        MoveL Offs(H_TL,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL Offs(H_BL,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL Offs(H_ML,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL Offs(H_MR,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL Offs(H_TR,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL Offs(H_BR,0,0,15),v100,z1,pen\WObj:=Workobject_1;
+        MoveL home,v100,z1,pen\WObj:=wobj0;
+    ENDPROC
+ENDMODULE
