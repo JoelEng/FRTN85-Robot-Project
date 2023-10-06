@@ -81,18 +81,14 @@ def recursive_matrix(matrix):
             if matrix[row][column]:
                 recursive_helper(matrix, row, column, True)
 
-if __name__ == '__main__':
+def image_processing():
     image_file = 'greta.jpeg'
     image = process_image(image_file)
-    file_name = 'coordinates.cls'
-    coordinates = []
-    recursive_matrix(image)
-    coordinates_divided = [(x / 3.0, y / 3.0) for x, y in coordinates]
-    write_coordinate_file(coordinates_divided, file_name)
+    return image
+    # file_name = 'coordinates.cls'
+    # coordinates = []
+    # recursive_matrix(image)
+    # coordinates_divided = [(x / 3.0, y / 3.0) for x, y in coordinates]
+    # write_coordinate_file(coordinates_divided, file_name)
 
     # Initialize variables to store the current line's starting and ending coordinates
-
-
-
-
-
