@@ -62,7 +62,7 @@ def recursive_matrix(matrix):
     sorted_list = sorted(drawing, key=len, reverse=True)
     filtered_list = filter(lambda x: len(x) > SMALLEST_PATH, sorted_list)
 
-    return filtered_list
+    return sorted_list
 
 if __name__ == "__main__":
     main()
