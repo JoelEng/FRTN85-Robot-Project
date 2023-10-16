@@ -5,7 +5,7 @@ def points_to_rapid(path_list):
     OUTPUT.write("MODULE Module1\n")
     OUTPUT.write("\tCONST robtarget home:=[[647.048869176,0,659.200917087],[0.608761434,-0.000000006,0.793353337,-0.000000005],[0,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];\n")
     points = define_constants(path_list, OUTPUT)
-    path_names = define_paths(path_list, OUTPUT)
+    path_names = define_paths(path_list, OUTPUT, points)
     OUTPUT.write("\tPROC main()\n")
     OUTPUT.write("\t\tMoveJ home,v100,z1,pen\WObj:=wobj0;\n")
     for name in path_names:
@@ -25,15 +25,15 @@ def define_constants(path_list, OUTPUT):
         OUTPUT.write(target_string(name, p[0], p[1]))
     return points
 
-def define_paths(paths, OUTPUT):
+def define_paths(paths, OUTPUT, points):
     path_names = []
     for i, path in enumerate(paths):
         name = f"path{i}"
         path_names.append(name)
         OUTPUT.write(f"\tPROC {name}()\n")
-        OUTPUT.write(f"\t\tMoveJ {path[0]},v100,z5,pen\WObj:=Workobject_1;\n")
+        OUTPUT.write(f"\t\tMoveJ {points[path[0]]},v100,z5,pen\WObj:=Workobject_1;\n")
         for p in path:
-            OUTPUT.write(f"\t\tMoveL Offs({p},0,0,15),v100,z1,pen\WObj:=Workobject_1;\n")
-        OUTPUT.write(f"\t\tMoveL {path[-1]},v100,z1,pen\WObj:=Workobject_1;\n")
+            OUTPUT.write(f"\t\tMoveL Offs({points[p]},0,0,15),v100,z1,pen\WObj:=Workobject_1;\n")
+        OUTPUT.write(f"\t\tMoveL {points[path[-1]]},v100,z1,pen\WObj:=Workobject_1;\n")
         OUTPUT.write(f"\tENDPROC\n")
     return path_names
