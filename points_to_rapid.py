@@ -8,11 +8,11 @@ def points_to_rapid(path_list):
     write_plane_calibration()
     path_names = define_paths(path_list, OUTPUT, points)
     OUTPUT.write("\tPROC main()\n")
-    OUTPUT.write("\t\tMoveJ home,v100,z1,pen\WObj:=wobj0;\n")
+    OUTPUT.write("\t\tMoveJ home,v100,z1,tool1\WObj:=wobj0;\n")
     OUTPUT.write("\t\tplane;\n")
     for name in path_names:
         OUTPUT.write(f"\t\t{name};\n")
-    OUTPUT.write("\t\tMoveJ home,v100,z1,pen\WObj:=wobj0;\n")
+    OUTPUT.write("\t\tMoveJ home,v100,z1,tool1\WObj:=wobj0;\n")
     OUTPUT.write("\tENDPROC\nENDMODULE")
 
 def write_plane_calibration():
@@ -56,9 +56,9 @@ def define_paths(paths, OUTPUT, points):
         name = f"path{i}"
         path_names.append(name)
         OUTPUT.write(f"\tPROC {name}()\n")
-        OUTPUT.write(f"\t\tMoveJ {points[path[0]]},v100,z5,pen\WObj:=Workobject_1;\n")
+        OUTPUT.write(f"\t\tMoveJ {points[path[0]]},v100,z5,tool1\WObj:=Workobject_1;\n")
         for p in path:
-            OUTPUT.write(f"\t\tMoveL Offs({points[p]},0,0,15),v100,z1,pen\WObj:=Workobject_1;\n")
-        OUTPUT.write(f"\t\tMoveL {points[path[-1]]},v100,z1,pen\WObj:=Workobject_1;\n")
+            OUTPUT.write(f"\t\tMoveL Offs({points[p]},0,0,15),v100,z1,tool1\WObj:=Workobject_1;\n")
+        OUTPUT.write(f"\t\tMoveL {points[path[-1]]},v100,z1,tool1\WObj:=Workobject_1;\n")
         OUTPUT.write(f"\tENDPROC\n")
     return path_names
