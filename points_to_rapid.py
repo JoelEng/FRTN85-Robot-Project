@@ -56,10 +56,9 @@ def define_paths(paths, OUTPUT, points):
         name = f"path{i}"
         path_names.append(name)
         OUTPUT.write(f"\tPROC {name}()\n")
-        OUTPUT.write(f"\t\tMoveJ Offs({points[path[0]]},0,0,5),v100,z5,tool1\WObj:=Workobject_1;\n")
+        OUTPUT.write(f"\t\tMoveJ {points[path[0]]},v100,z5,tool1\WObj:=Workobject_1;\n")
         for p in path:
-            if(p != 0):
-                OUTPUT.write(f"\t\tMoveL Offs({points[p]},0,0,5),v100,z1,tool1\WObj:=Workobject_1;\n")
+            OUTPUT.write(f"\t\tMoveL Offs({points[p]},0,0,5),v100,z1,tool1\WObj:=Workobject_1;\n")
         OUTPUT.write(f"\t\tMoveL {points[path[-1]]},v100,z1,tool1\WObj:=Workobject_1;\n")
         OUTPUT.write(f"\tENDPROC\n")
     return path_names
