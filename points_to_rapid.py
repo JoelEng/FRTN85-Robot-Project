@@ -5,7 +5,7 @@ def points_to_rapid(path_list):
     OUTPUT.write("MODULE Module1\n")
     OUTPUT.write("\tCONST robtarget home:=[[647.048869176,0,659.200917087],[0.608761434,-0.000000006,0.793353337,-0.000000005],[0,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];\n")
     points = define_constants(path_list, OUTPUT)
-    write_plane_calibration()
+    write_plane_calibration(OUTPUT)
     path_names = define_paths(path_list, OUTPUT, points)
     OUTPUT.write("\tPROC main()\n")
     OUTPUT.write("\t\tMoveJ home,v100,z1,tool1\WObj:=wobj0;\n")
@@ -15,7 +15,7 @@ def points_to_rapid(path_list):
     OUTPUT.write("\t\tMoveJ home,v100,z1,tool1\WObj:=wobj0;\n")
     OUTPUT.write("\tENDPROC\nENDMODULE")
 
-def write_plane_calibration():
+def write_plane_calibration(OUTPUT):
     OUTPUT.write("\tPROC plane()\n")
     OUTPUT.write("\t\tMoveJ air_1,v50,z1,tool1\WObj:=Workobject_1;\n")
     OUTPUT.write("\t\tSearchL \Stop, DI10_0, sp_1, paper_1, v20, tool1\WObj:=Workobject_1;\n")
