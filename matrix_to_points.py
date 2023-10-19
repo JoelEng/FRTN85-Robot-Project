@@ -1,34 +1,7 @@
-# import example_matrices
-# from matplotlib import image as img
-
 def only_zero_neighbours(matrix, x, y):
     neighbors = [(x+1, y), (x-1, y), (x, y+1), (x, y-1), (x+1, y+1), (x-1, y-1), (x-1, y+1), (x+1, y-1)]
 
     return sum(matrix[z][w] for z, w in neighbors if 0 <= z < len(matrix) and 0 <= w < len(matrix[0])) == 0
-
-def iterative(matrix, row, col, path, drawing):
-    coord_stack = [(row,col)]
-
-    rows = len(matrix)
-    cols = len(matrix[0])
-
-    while(coord_stack):
-        coord = coord_stack.pop()
-        row = coord[0]
-        col = coord[1]
-
-        matrix[row][col] = 0
-        path.append((row, col))
-
-        for dr in [-1, 0, 1]:
-            for dc in [-1, 0, 1]:
-                if dr == 0 and dc == 0:
-                    continue
-                new_row, new_col = row + dr, col + dc
-                if 0 <= new_row < rows and 0 <= new_col < cols and matrix[new_row][new_col]:
-                    coord_stack.append((new_row, new_col))
-
-    drawing.append(path)
 
 def recursive_helper(matrix, row, col, path, drawing):
     if (only_zero_neighbours(matrix, row, col)):
@@ -89,25 +62,25 @@ def recursive_helper(matrix, row, col, path, drawing):
 
 def matrix_to_points(matrix):
     SMALLEST_PATH = 2
+    PATH_CUTOFF = 40
     drawing = list()
 
     for row in range(len(matrix)):
         for column in range(len(matrix[0])):
                 if matrix[row][column]:
                     path = list()
-                    # recursive_helper(matrix, row, column, path, drawing)
-                    iterative(matrix, row, column, path, drawing)
+                    recursive_helper(matrix, row, column, path, drawing)
 
-    sorted_list = sorted(drawing, key=len, reverse=True)
-    filtered_list = filter(lambda x: len(x) > SMALLEST_PATH, sorted_list)
+    filtered_list = filter(lambda x: len(x) > SMALLEST_PATH, drawing)
+
+    longest_paths = [x for x in filtered_list if len(x) >= PATH_CUTOFF]
+
+    sorted_path = sorted(longest_paths, key=len, reverse=True)
+
+    new_paths = list(sorted_path) + list(filtered_list)
 
     unique_sorted_list = []
-    [unique_sorted_list.append(x) for x in filtered_list if x not in unique_sorted_list]
-
-    for i in range(len(unique_sorted_list)):
-        p = []
-        [p.append(x) for x in unique_sorted_list[i] if x not in p]
-        unique_sorted_list[i] = p
+    [unique_sorted_list.append(x) for x in new_paths if x not in unique_sorted_list]
 
     return unique_sorted_list
 
