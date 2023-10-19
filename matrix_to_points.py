@@ -73,14 +73,8 @@ def matrix_to_points(matrix):
 
     filtered_list = filter(lambda x: len(x) > SMALLEST_PATH, drawing)
 
-    longest_paths = [x for x in filtered_list if len(x) >= PATH_CUTOFF]
-
-    sorted_path = sorted(longest_paths, key=len, reverse=True)
-
-    new_paths = list(sorted_path) + list(filtered_list)
-
     unique_sorted_list = []
-    [unique_sorted_list.append(x) for x in new_paths if x not in unique_sorted_list]
+    [unique_sorted_list.append(x) for x in list(filtered_list) if x not in unique_sorted_list]
 
     return unique_sorted_list
 
