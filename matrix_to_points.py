@@ -45,23 +45,23 @@ def recursive_helper(matrix, row, col, path, drawing):
         except IndexError:
             pass
 
-        # try:
-        #     if matrix[row-1][col-1] >= MIN_VALUE:
-        #         recursive_helper(matrix, row-1, col-1, path, drawing)
-        # except IndexError:
-        #     pass
+        try:
+            if matrix[row-1][col-1] >= MIN_VALUE:
+                recursive_helper(matrix, row-1, col-1, path, drawing)
+        except IndexError:
+            pass
     
-        # try:
-        #     if matrix[row-1][col] >= MIN_VALUE:
-        #         recursive_helper(matrix, row-1, col, path, drawing)
-        # except IndexError:
-        #     pass
+        try:
+            if matrix[row-1][col] >= MIN_VALUE:
+                recursive_helper(matrix, row-1, col, path, drawing)
+        except IndexError:
+            pass
 
-        # try:
-        #     if matrix[row-1][col+1] >= MIN_VALUE:
-        #         recursive_helper(matrix, row-1, col+1, path, drawing)
-        # except IndexError:
-        #     pass
+        try:
+            if matrix[row-1][col+1] >= MIN_VALUE:
+                recursive_helper(matrix, row-1, col+1, path, drawing)
+        except IndexError:
+            pass
 
 def matrix_to_points(matrix):
     SMALLEST_PATH = 2
