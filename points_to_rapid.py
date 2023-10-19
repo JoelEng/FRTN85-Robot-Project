@@ -28,7 +28,7 @@ def write_plane_calibration(OUTPUT):
     OUTPUT.write("\tENDPROC\n")
 
 def target_string(name, x, y):
-    return f"\tCONST robtarget {name}:=[[{x},{y},0],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];\n"
+    return f"\tCONST robtarget {name}:=[[{x},{y},-2],[1,0,0,0],[0,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];\n"
 
 def define_constants(path_list, OUTPUT):
     flattened = set([item for sublist in path_list for item in sublist])
@@ -58,7 +58,7 @@ def define_paths(paths, OUTPUT, points):
         OUTPUT.write(f"\tPROC {name}()\n")
         OUTPUT.write(f"\t\tMoveJ {points[path[0]]},v100,z5,tool1\WObj:=Workobject_1;\n")
         for p in path:
-            OUTPUT.write(f"\t\tMoveL Offs({points[p]},0,0,5),v100,z1,tool1\WObj:=Workobject_1;\n")
+            OUTPUT.write(f"\t\tMoveL Offs({points[p]},0,0,6),v100,z1,tool1\WObj:=Workobject_1;\n")
         OUTPUT.write(f"\t\tMoveL {points[path[-1]]},v100,z1,tool1\WObj:=Workobject_1;\n")
         OUTPUT.write(f"\tENDPROC\n")
     return path_names
